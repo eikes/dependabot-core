@@ -21,6 +21,8 @@ module Dependabot
         all_updated_dependencies = []
         updated_files = []
         group.dependencies.each do |dependency|
+          next unless dependency.top_level?
+
           dependency_files = original_files_merged_with(updated_files)
           updated_dependencies = compile_updates_for(dependency, dependency_files)
 
